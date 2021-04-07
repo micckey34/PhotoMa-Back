@@ -21,7 +21,6 @@ class FolderController extends Controller
         $user_id = $request->input('user_id');
         $look = $request->input('look');
 
-
         return
             Folder::insert([
                 'id' => null,

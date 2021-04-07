@@ -30,4 +30,7 @@ Route::post('/signin', 'App\Http\Controllers\UserController@signin');
 //フォルダ読み込み
 Route::get('/folder/{id}', 'App\Http\Controllers\FolderController@folder');
 //フォルダ作成
-Route::post('/folderCreate', 'App\Http\Controllers\FolderController@create');
+Route::post('/createFolder', 'App\Http\Controllers\FolderController@create');
+
+//グループ作成
+Route::post('/createGroup', 'App\Http\Controllers\GroupController@create');
