@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Log;
 
 class FolderController extends Controller
 {
-    public function folder($id)
+    //フォルダ一覧表示
+    public function folderList($id)
     {
         $folders = Folder::select('id', 'folder_name')->where('user_id', $id)->get();
         return $folders;
     }
 
-
+    //フォルダ作成
     public function create(Request $request)
     {
         $folder_name = $request->input('folder_name');
@@ -31,4 +32,9 @@ class FolderController extends Controller
                 'updated_at' => now()
             ]);
     }
+    //写真一覧表示
+    //写真アップロード
+    //写真詳細表示
+    //写真メモ作成
+
 }

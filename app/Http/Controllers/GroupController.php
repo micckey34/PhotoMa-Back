@@ -8,14 +8,22 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+    //グループリスト表示
+    public function groupList($id)
+    {
+        $groups = GroupJoin::select('groups.id', 'groups.group_name')
+            ->join('groups', 'group_joins.group_id', '=', 'groups.id')
+            ->where('group_joins.user_id', $id)->get();
+        return $groups;
+    }
+
+    //グループ作成
     public function create(Request $request)
     {
         $group_name = $request->input('group_name');
         $user_id = $request->input('user_id');
-        $unique_id = '000000';
-        // $unique_id = $user_id . uniqid();
-
-
+        // $unique_id = '000000';
+        $unique_id = $user_id . uniqid();
         Group::insert([
             'id' => null,
             'group_name' => $group_name,
@@ -34,4 +42,8 @@ class GroupController extends Controller
             'updated_at' => now()
         ]);
     }
+    //グループ検索
+    //グループ加入
+    //グループチャット
+    //グループ情報編集
 }

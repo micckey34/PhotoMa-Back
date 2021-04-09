@@ -43,11 +43,11 @@ class UserController extends Controller
   }
 
   //ログイン
-  public function signin(Request $request)
+  public function signIn(Request $request)
   {
     $email = $request->input('email');
     $password = $request->input('password');
-    $query = ['email' => $email, 'password' => $password];
+    $query = ['email' => $email, 'password' => sha1($password)];
     $data = User::where($query)->get();
 
     if (count($data) > 0) {
@@ -57,4 +57,40 @@ class UserController extends Controller
       return ['result' => 'false'];
     };
   }
+
+  //ユーザーデータ取得
+  public function myData($id)
+  {
+    $data = User::where('id', $id)->get();
+    return $data[0];
+  }
+
+  //ユーザーデータ変更
+  public function update(Request $request)
+  {
+    $type = $request->input('type');
+    $id = $request->input('id');
+    $value = $request->input('value');
+    if ($type == 'name') {
+      return
+        User::where('id', $id)->update(['name' => $value]);
+    } else if ($type == 'salon') {
+      return
+        User::where('id', $id)->update(['salon' => $value]);
+    } else if ($type == 'email') {
+      return
+        User::where('id', $id)->update(['email' => $value]);
+    }
+  }
+
+  //ユーザーデータ一覧
+  public function usersList()
+  {
+    $users_list = User::select('id', 'name', 'salon')->get();
+
+    return $users_list;
+  }
+
+  //ユーザーデータ詳細、公開フォルダ一覧
+  //公開フォルダ写真一覧
 }
