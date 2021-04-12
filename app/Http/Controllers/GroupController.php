@@ -22,7 +22,6 @@ class GroupController extends Controller
     {
         $group_name = $request->input('group_name');
         $user_id = $request->input('user_id');
-        // $unique_id = '000000';
         $unique_id = $user_id . uniqid();
         Group::insert([
             'id' => null,
@@ -42,8 +41,39 @@ class GroupController extends Controller
             'updated_at' => now()
         ]);
     }
+
     //グループ検索
+    public function search(Request $request)
+    {
+        $unique_id = $request->input('unique_id');
+        $groups = Group::where('unique_id', $unique_id)->get();
+        $group = $groups[0];
+        if (count($groups) > 0) {
+            return [
+                'id' => $group['id'],
+                'group_name' => $group['group_name'],
+                'unique_id' => $group['unique_id']
+            ];
+        }
+    }
+
     //グループ加入
+    public function join(Request $request)
+    {
+        $user_id = $request->input('user_id');
+        $group_id = $request->input('group_id');
+        $query = ['user_id' => $user_id, 'group_id' => $group_id];
+        $group = GroupJoin::where($query)->get();
+        if (count($group) < 1) {
+            GroupJoin::insert([
+                'id' => null,
+                'user_id' => $user_id,
+                'group_id' => $group_id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+    }
     //グループチャット
     //グループ情報編集
 }

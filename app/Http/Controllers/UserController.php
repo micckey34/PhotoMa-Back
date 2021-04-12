@@ -37,6 +37,7 @@ class UserController extends Controller
         'salon' => $salon,
         'email' => $email,
         'password' => sha1($password),
+        'profile_image_path' => null,
         'created_at' => now(),
         'updated_at' => now()
       ]);
@@ -52,7 +53,7 @@ class UserController extends Controller
 
     if (count($data) > 0) {
       $user = $data[0];
-      return ['result' => 'true', 'name' => $user['name'], 'salon' => $user['salon'], 'email' => $user['email']];
+      return ['result' => 'true', 'id' => $user['id'],];
     } else {
       return ['result' => 'false'];
     };
