@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\GroupJoin;
+use App\Models\GroupPost;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -75,5 +76,46 @@ class GroupController extends Controller
         }
     }
     //グループチャット
+    public function groupPage($id)
+    {
+        $posts = GroupPost::select('posts', 'folder_id', 'users.name', 'users.profile_image_path')
+            ->join('users', 'group_posts.user_id', '=', 'users.id')->where('group_id', $id)->get();
+        return $posts;
+    }
+
+    public function post(Request $request)
+    {
+        $posts = $request->input('posts');
+        $group_id = $request->input('group_id');
+        $user_id = $request->input('user_id');
+
+        return
+            GroupPost::insert([
+                'id' => null,
+                'posts' => $posts,
+                'group_id' => $group_id,
+                'user_id' => $user_id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+    }
+
+    public function postFolder(Request $request)
+    {
+        $posts = $request->input('posts');
+        $group_id = $request->input('group_id');
+        $user_id = $request->input('user_id');
+        $folder_id = $request->input('folder_id');
+        return
+            GroupPost::insert([
+                'id' => null,
+                'posts' => $posts,
+                'group_id' => $group_id,
+                'user_id' => $user_id,
+                'folder_id' => $folder_id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+    }
     //グループ情報編集
 }

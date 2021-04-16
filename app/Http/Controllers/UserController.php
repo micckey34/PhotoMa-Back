@@ -66,6 +66,12 @@ class UserController extends Controller
     return $data[0];
   }
 
+  public function userData($id)
+  {
+    $data = User::select('id', 'name', 'salon', 'profile_image_path')->where('id', $id)->get();
+    return $data[0];
+  }
+
   //ユーザーデータ変更
   public function update(Request $request)
   {
@@ -87,7 +93,7 @@ class UserController extends Controller
   //ユーザーデータ一覧
   public function usersList()
   {
-    $users_list = User::select('id', 'name', 'salon')->get();
+    $users_list = User::select('id', 'name', 'salon', 'profile_image_path')->get();
 
     return $users_list;
   }

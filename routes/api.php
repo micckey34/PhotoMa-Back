@@ -18,6 +18,7 @@ Route::post('/signUp', 'App\Http\Controllers\UserController@create');
 Route::post('/signIn', 'App\Http\Controllers\UserController@signIn');
 //ユーザーデータ取得
 Route::get('/myData/{id}', 'App\Http\Controllers\UserController@myData');
+Route::get('/userData/{id}', 'App\Http\Controllers\UserController@userData');
 //ユーザーデータ変更
 Route::post('/update', 'App\Http\Controllers\UserController@update');
 
@@ -41,6 +42,9 @@ Route::post('/searchGroup', 'App\Http\Controllers\GroupController@search');
 //グループ加入
 Route::post('/joinGroup', 'App\Http\Controllers\GroupController@join');
 //グループチャット
+Route::get('/groupPage/{id}', 'App\Http\Controllers\GroupController@groupPage');
+Route::post('/groupPost', 'App\Http\Controllers\GroupController@post');
+Route::post('/groupPostFolder', 'App\Http\Controllers\GroupController@postFolder');
 //グループ情報編集
 
 

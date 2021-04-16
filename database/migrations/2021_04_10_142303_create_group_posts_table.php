@@ -18,7 +18,7 @@ class CreateGroupPostsTable extends Migration
             $table->string('posts');
             $table->integer('group_id');
             $table->integer('user_id');
-            $table->integer('folder_id')->default(null);
+            $table->integer('folder_id')->nullable();
             $table->timestamps();
         });
     }

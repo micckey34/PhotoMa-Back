@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('salon');
             $table->string('email')->unique();
-            $table->string('profile_image_path')->unique()->default(null);
+            $table->string('profile_image_path')->nullable();
             $table->string('password');
             $table->timestamps();
         });
