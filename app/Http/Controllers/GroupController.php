@@ -83,6 +83,12 @@ class GroupController extends Controller
         return $posts;
     }
 
+    public function uniqueId($id)
+    {
+        $unique_id = Group::select('unique_id')->where('id', $id)->get();
+        return $unique_id[0];
+    }
+
     public function post(Request $request)
     {
         $posts = $request->input('posts');

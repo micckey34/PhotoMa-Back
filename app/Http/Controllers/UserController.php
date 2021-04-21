@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Folder;
 
 class UserController extends Controller
 {
   public function test()
   {
-    $test = User::where('id', 1)->get();
-    return $test[0];
+    $data = User::with(['folders' => function ($query) {
+      $query->where('look', 0);
+    }])->get();
+    return $data;
   }
 
   public function test2()
@@ -66,11 +69,6 @@ class UserController extends Controller
     return $data[0];
   }
 
-  public function userData($id)
-  {
-    $data = User::select('id', 'name', 'salon', 'profile_image_path')->where('id', $id)->get();
-    return $data[0];
-  }
 
   //ユーザーデータ変更
   public function update(Request $request)
@@ -90,14 +88,35 @@ class UserController extends Controller
     }
   }
 
+  public function profileImg(Request $request)
+  {
+    $profile_image_path = $request->input('profile_image_path');
+    $user_id = $request->input('user_id');
+
+    return User::where('id', $user_id)->update(['profile_image_path' => $profile_image_path]);
+  }
+
   //ユーザーデータ一覧
   public function usersList()
   {
-    $users_list = User::select('id', 'name', 'salon', 'profile_image_path')->get();
+    $users_list = User::select('id', 'name', 'salon')->with(['folders' => function ($query) {
+      $query->where('look', 0);
+    }])->get();
 
     return $users_list;
   }
 
   //ユーザーデータ詳細、公開フォルダ一覧
+  public function userData($id)
+  {
+    $data = User::select('id', 'name', 'salon', 'profile_image_path')->where('id', $id)->get();
+    return $data[0];
+  }
+  public function folderData($id)
+  {
+    $query = ['user_id' => $id, 'look' => false];
+    $data = Folder::select('id', 'folder_name')->where($query)->get();
+    return $data;
+  }
   //公開フォルダ写真一覧
 }

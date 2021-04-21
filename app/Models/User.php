@@ -31,4 +31,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
+
+    /**
+     * ブログポストのコメントを取得
+     */
+    public function folders()
+    {
+        return $this->hasMany('App\Models\Folder');
+    }
 }
