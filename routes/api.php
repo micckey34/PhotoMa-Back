@@ -33,7 +33,9 @@ Route::get('/photoList/{id}', 'App\Http\Controllers\FolderController@photoList')
 Route::post('/imgUpload', 'App\Http\Controllers\FolderController@imgUpload');
 //写真詳細表示
 Route::get('/photoPage/{id}', 'App\Http\Controllers\FolderController@photoPage');
+Route::get('/getMemo/{id}', 'App\Http\Controllers\FolderController@getMemo');
 //写真メモ作成
+Route::post('/memoCreate', 'App\Http\Controllers\FolderController@memoCreate');
 
 
 //グループ一覧表示

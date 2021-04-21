@@ -99,7 +99,7 @@ class UserController extends Controller
   //ユーザーデータ一覧
   public function usersList()
   {
-    $users_list = User::select('id', 'name', 'salon')->with(['folders' => function ($query) {
+    $users_list = User::select('id', 'name', 'salon', 'profile_image_path')->with(['folders' => function ($query) {
       $query->where('look', 0);
     }])->get();
 
@@ -118,5 +118,4 @@ class UserController extends Controller
     $data = Folder::select('id', 'folder_name')->where($query)->get();
     return $data;
   }
-  //公開フォルダ写真一覧
 }

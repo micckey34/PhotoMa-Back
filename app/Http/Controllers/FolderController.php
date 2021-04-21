@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Folder;
 use App\Models\Image;
+use App\Models\ImagePost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -63,6 +64,23 @@ class FolderController extends Controller
         $data = Image::where('id', $id)->get();
         return $data[0];
     }
-    //写真メモ作成
+    public function getMemo($id)
+    {
+        $data = ImagePost::where('image_id', $id)->get();
+        return $data;
+    }
 
+    //写真メモ作成
+    public function memoCreate(Request $request)
+    {
+        $posts = $request->input('posts');
+        $image_id = $request->input('image_id');
+
+        ImagePost::insert([
+            'posts' => $posts,
+            'image_id' => $image_id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+    }
 }
