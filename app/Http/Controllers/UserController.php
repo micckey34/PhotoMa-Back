@@ -9,21 +9,6 @@ use App\Models\Folder;
 
 class UserController extends Controller
 {
-  public function test()
-  {
-    $data = User::with(['folders' => function ($query) {
-      $query->where('look', 0);
-    }])->get();
-    return $data;
-  }
-
-  public function test2()
-  {
-    $query = ['email' => 'email', 'password' => 'passwordd'];
-    $data = User::where($query)->get();
-    return $data;
-  }
-
 
   //ユーザー登録
   public function create(Request $request)
