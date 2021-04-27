@@ -86,7 +86,7 @@ class UserController extends Controller
   {
     $users_list = User::select('id', 'name', 'salon', 'profile_image_path')->with(['folders' => function ($query) {
       $query->where('look', 0);
-    }])->get();
+    }])->inrandomorder()->get();
 
     return $users_list;
   }

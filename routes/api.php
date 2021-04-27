@@ -9,7 +9,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //テスト
-// Route::get('/test', 'App\Http\Controllers\UserController@test');
 Route::post('/test', 'App\Http\Controllers\FolderController@test');
 Route::get('/test2', 'App\Http\Controllers\UserController@test2');
 
