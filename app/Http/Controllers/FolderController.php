@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Folder;
+use App\Models\GroupPost;
 use App\Models\Image;
 use App\Models\ImagePost;
 use Illuminate\Http\Request;
@@ -10,6 +11,13 @@ use Illuminate\Support\Facades\Log;
 
 class FolderController extends Controller
 {
+    public function test(Request $request)
+    {
+        $id = $request->input('id');
+        $query = Image::select('id')->where('folder_id', $id)->get();
+        return $query;
+    }
+
     //フォルダ一覧表示
     public function folderList($id)
     {
@@ -35,6 +43,18 @@ class FolderController extends Controller
             ]);
     }
 
+    //フォルダ削除
+    public function delete(Request $request)
+    {
+        $id = $request->input('id');
+        $query = Image::select('id')->where('folder_id', $id)->get();
+        GroupPost::where('folder_id', $id)->delete();
+        foreach ($query as $image_id) {
+            ImagePost::where('image_id', $image_id['id'])->delete();
+        }
+        Image::where('folder_id', $id)->delete();
+        Folder::find($id)->delete();
+    }
     //写真一覧表示
     public function photoList($id)
     {
@@ -58,12 +78,22 @@ class FolderController extends Controller
             'updated_at' => now()
         ]);
     }
+
+    //写真削除
+    public function deleteImage(Request $request)
+    {
+        $id = $request->input('id');
+        ImagePost::where('image_id', $id)->delete();
+        Image::where('id', $id)->delete();
+    }
+
     //写真詳細表示
     public function photoPage($id)
     {
         $data = Image::where('id', $id)->get();
         return $data[0];
     }
+
     public function getMemo($id)
     {
         $data = ImagePost::where('image_id', $id)->get();

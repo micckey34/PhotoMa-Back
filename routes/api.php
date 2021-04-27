@@ -9,7 +9,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //テスト
-Route::get('/test', 'App\Http\Controllers\UserController@test');
+// Route::get('/test', 'App\Http\Controllers\UserController@test');
+Route::post('/test', 'App\Http\Controllers\FolderController@test');
 Route::get('/test2', 'App\Http\Controllers\UserController@test2');
 
 //ユーザー登録
@@ -27,10 +28,14 @@ Route::post('/profileImg', 'App\Http\Controllers\UserController@profileImg');
 Route::get('/folderList/{id}', 'App\Http\Controllers\FolderController@folderList');
 //フォルダ作成
 Route::post('/createFolder', 'App\Http\Controllers\FolderController@create');
+//フォルダ削除
+Route::post('/deleteFolder', 'App\Http\Controllers\FolderController@delete');
 //写真一覧表示
 Route::get('/photoList/{id}', 'App\Http\Controllers\FolderController@photoList');
 //写真アップロード
 Route::post('/imgUpload', 'App\Http\Controllers\FolderController@imgUpload');
+//写真削除
+Route::post('/deleteImage', 'App\Http\Controllers\FolderController@deleteImage');
 //写真詳細表示
 Route::get('/photoPage/{id}', 'App\Http\Controllers\FolderController@photoPage');
 Route::get('/getMemo/{id}', 'App\Http\Controllers\FolderController@getMemo');
@@ -51,6 +56,8 @@ Route::get('/groupPage/{id}', 'App\Http\Controllers\GroupController@groupPage');
 Route::get('/uniqueId/{id}', 'App\Http\Controllers\GroupController@uniqueId');
 Route::post('/groupPost', 'App\Http\Controllers\GroupController@post');
 Route::post('/groupPostFolder', 'App\Http\Controllers\GroupController@postFolder');
+//投稿削除
+Route::post('/deletePost', 'App\Http\Controllers\GroupController@deletePost');
 //グループ情報編集
 
 

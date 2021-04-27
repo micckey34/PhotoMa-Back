@@ -78,7 +78,7 @@ class GroupController extends Controller
     //グループチャット
     public function groupPage($id)
     {
-        $posts = GroupPost::select('posts', 'folder_id', 'users.name', 'users.profile_image_path')
+        $posts = GroupPost::select('group_posts.id', 'posts', 'folder_id', 'user_id', 'users.name', 'users.profile_image_path')
             ->join('users', 'group_posts.user_id', '=', 'users.id')->where('group_id', $id)->get();
         return $posts;
     }
@@ -104,6 +104,13 @@ class GroupController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
+    }
+
+    //投稿削除
+    public function deletePost(Request $request)
+    {
+        $id = $request->input('id');
+        GroupPost::find($id)->delete();
     }
 
     public function postFolder(Request $request)
