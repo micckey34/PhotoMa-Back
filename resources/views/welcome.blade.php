@@ -44,7 +44,7 @@
                 @foreach($folders as $folder)
                 <a href="">
                     <div class="folder">
-                        <h3>{{ $folder -> folder_name }}</h3>
+                        <p>{{ $folder -> folder_name }}</p>
                     </div>
                 </a>
                 @endforeach

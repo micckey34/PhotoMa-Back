@@ -15,4 +15,9 @@ class Folder extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\Image');
+    }
 }

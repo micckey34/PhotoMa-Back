@@ -11,6 +11,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //テスト
 Route::post('/test', 'App\Http\Controllers\FolderController@test');
 Route::get('/test2', 'App\Http\Controllers\UserController@test2');
+Route::get('/test5', 'App\Http\Controllers\FolderController@test5');
 
 //ユーザー登録
 Route::post('/signUp', 'App\Http\Controllers\UserController@create');

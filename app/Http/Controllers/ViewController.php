@@ -14,7 +14,9 @@ class ViewController extends Controller
             $query->where('look', 0);
         }])->inrandomorder()->limit(5)->get();
 
-        $folders = Folder::select('id', 'folder_name')->where('look', 0)->limit(5)->get();
+        $folders = Folder::select('id', 'folder_name')->where('look', 0)->with(['images' => function ($query) {
+            $query->Limit(1);
+        }])->limit(5)->get();
 
         return view('welcome')->with(['users' => $users, 'folders' => $folders]);
     }

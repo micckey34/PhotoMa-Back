@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Log;
 
 class FolderController extends Controller
 {
+
+    public function test5()
+    {
+        $folders = Folder::select('id', 'folder_name')->where('look', 0)->with(['images' => function ($query) {
+            $query->Limit(1);
+        }])->limit(5)->get();
+        return $folders;
+    }
     //フォルダ一覧表示
     public function folderList($id)
     {
