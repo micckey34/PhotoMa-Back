@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\ViewController@view')->name('welcome');
+Route::get('/userList', 'App\Http\Controllers\ViewController@userList')->name('userList');
+Route::get('/folderList', 'App\Http\Controllers\ViewController@folderList')->name('folderList');

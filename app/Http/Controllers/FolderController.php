@@ -83,7 +83,7 @@ class FolderController extends Controller
     //写真詳細表示
     public function photoPage($id)
     {
-        $data = Image::where('id', $id)->get();
+        $data = Image::select('images.id', 'images.image_path', 'folders.folder_name')->join('folders', 'images.folder_id', '=', 'folders.id')->where('images.id', $id)->get();
         return $data[0];
     }
 

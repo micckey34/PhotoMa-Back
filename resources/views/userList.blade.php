@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/welcome.css">
+        <link rel="stylesheet" href="css/userList.css">
 
         <style>
             body {
@@ -26,32 +26,19 @@
             <h2>美容師一覧</h2>
             <div class="user_list">
                 @foreach($users as $user)
-                <div>
-                    <img src="{{ $user -> profile_image_path }}" alt="" width="160">
-                    <h3>{{ $user -> name }}</h3>
+                <div class="user">
+                  <div class="img">
+                    <img src="{{ $user -> profile_image_path }}" alt="">
+                  </div>
+                  <div class="info">
+                    <h3 class="name">{{ $user -> name }}</h3>
                     <p>{{ $user -> salon }}</p>
+                  </div>
                 </div>
                 @endforeach
-                <a href="{{ route('userList') }}">
-                    <div>
-                        <img src="image/arrow.png" alt="" width="160">
-                        <p class="text">全ての美容師を見る</p>
-                    </div>
-                </a>
             </div>
-            <h2>公開フォルダ一覧</h2>
-            <div class="folder_list">
-                @foreach($folders as $folder)
-                <a href="">
-                    <div class="folder">
-                        <h3>{{ $folder -> folder_name }}</h3>
-                    </div>
-                </a>
-                @endforeach
-                <a href="{{ route('folderList') }}">
-                    <img src="image/arrow.png" alt="" width="160">
-                    <p class="text">全てのスタイルを見る</p>
-                </a>
+            <div class="back">
+              <a href="{{ route('welcome') }}" class="btn">戻る</a>
             </div>
         </div>
         </body>
