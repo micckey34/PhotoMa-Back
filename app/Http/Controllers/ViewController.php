@@ -28,4 +28,12 @@ class ViewController extends Controller
         }])->inrandomorder()->get();
         return view('userList')->with(['users' => $users]);
     }
+
+    public function folderList()
+    {
+        $folders = Folder::select('id', 'folder_name')->where('look', 0)->with(['images' => function ($query) {
+            $query->Limit(1);
+        }])->inrandomorder()->get();
+        return view('folderList')->with(['folders' => $folders]);
+    }
 }

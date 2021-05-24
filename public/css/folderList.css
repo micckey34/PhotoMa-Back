@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Oswald&display=swap');
 body {
-    margin: 20px auto;
-    /* padding: 10px; */
-    width: 1000px;
-    border: 1px rgb(98, 0, 255) solid;
+    width: 100%;
 }
 
-.title {
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: rgb(98, 0, 255);
+header {
+    background-color: rgb(146, 113, 199);
+    padding: 20px 0;
     color: white;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 90px;
 }
 
 h1 {
@@ -19,6 +20,49 @@ h1 {
     font-family: 'Fredericka the Great', cursive;
 }
 
-.main {
+main {
+    margin: 130px 0 50px 0;
     padding: 10px;
+}
+
+.folder_list {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.folder {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: pink;
+    box-shadow: 0 0 10px gray;
+    border-radius: 10%;
+}
+
+.box {
+    background-color: white;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.back {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    color: white;
+    background-color: rgb(146, 113, 199);
+}
+
+.btn {
+    display: block;
+    line-height: 50px;
+    margin: 0 auto;
+    color: white;
+    text-align: center;
+    font-size: 25px;
 }

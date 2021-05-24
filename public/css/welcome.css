@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Oswald&display=swap');
 body {
-    margin: 20px auto;
-    /* padding: 10px; */
-    width: 1000px;
-    border: 1px rgb(98, 0, 255) solid;
+    width: 100%;
 }
 
-.title {
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: rgb(98, 0, 255);
+header {
+    background-color: rgb(146, 113, 199);
+    padding: 20px 0;
     color: white;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 90px;
 }
 
 h1 {
@@ -19,45 +20,78 @@ h1 {
     font-family: 'Fredericka the Great', cursive;
 }
 
-.main {
+main {
+    margin-top: 130px;
     padding: 10px;
 }
 
 h2 {
-    margin-bottom: 10px;
+    margin: 10px;
+}
+
+.list {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: scroll;
 }
 
 .user_list {
-    display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 20px;
+    height: 220px;
 }
 
-.user_list img {
+.user {
+    margin: 12px;
+    padding: 15px 5px;
+    width: 140px;
+    border: 1px solid violet;
     border-radius: 10%;
+    box-shadow: 0 0 10px gray;
 }
 
-.folder_list {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-evenly;
+.user img {
+    border-radius: 50%;
+    margin: 0 30px;
 }
 
-.folder {
+.info {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 160px;
-    width: 160px;
-    background-color: rgb(188, 167, 207);
-    border-radius: 10%;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.folder p {
-    color: white;
+h4 {
     font-size: 20px;
 }
 
-.text {
+.folder_list {
+    height: 180px;
+}
+
+.folder {
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+    margin: 10px;
+    border-radius: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px gray;
+}
+
+.folder p {
+    margin: 10px;
+}
+
+.link {
     color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link p {
+    padding-left: 30px;
 }
